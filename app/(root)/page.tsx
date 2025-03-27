@@ -7,7 +7,7 @@ import InterviewCard from "@/components/InterviewCard";
 import { getCurrentUser } from "@/lib/actions/auth.action";
 import { getInterviewsByUserId, getLatestInterviews } from "@/lib/actions/general.action";
 
-import { dummyInterviews } from "@/constants"; //dummyInterviews
+import { dummyInterviews } from "@/constants"; //dummyInterviews revert changes
 
 async function Home() {
   const user = await getCurrentUser();
