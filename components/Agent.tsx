@@ -14,6 +14,7 @@ enum CallStatus {
   CONNECTING = "CONNECTING",
   ACTIVE = "ACTIVE",
   FINISHED = "FINISHED",
+  CANCELLED = "CANCELLED",
 }
 
 interface SavedMessage {
@@ -146,6 +147,12 @@ const Agent = ({
     vapi.stop();
   };
 
+  const handleCallCancelled = () => {
+    setCallStatus(CallStatus.CANCELLED);
+    vapi.stop();
+    router.push("/");
+  };
+
     return (
         <>
         <div className="call-view">
@@ -189,28 +196,34 @@ const Agent = ({
         </div>
       )}
 
-      <div className="w-full flex justify-center">
-        {callStatus !== "ACTIVE" ? (
-          <button className="relative btn-call" onClick={() => handleCall()}>
-            <span
-              className={cn(
-                "absolute animate-ping rounded-full opacity-75",
-                callStatus !== "CONNECTING" && "hidden"
-              )}
-            />
-
-            <span className="relative">
-              {callStatus === "INACTIVE" || callStatus === "FINISHED"
-                ? "Call"
-                : ". . ."}
-            </span>
-          </button>
-        ) : (
-          <button className="btn-disconnect" onClick={() => handleDisconnect()}>
-            End
-          </button>
+<div className="w-full flex justify-center gap-4">
+  {/* Start Call Button */}
+  {callStatus !== "ACTIVE" && (
+    <button className="relative btn-call mt-20" onClick={() => handleCall()}>
+      <span
+        className={cn(
+          "absolute animate-ping rounded-full opacity-75",
+          callStatus !== "CONNECTING" && "hidden"
         )}
-      </div>
+      />
+      <span className="relative">
+        {callStatus === "INACTIVE" || callStatus === "FINISHED" || callStatus === "CANCELLED"
+          ? "Start Call"
+          : ". . ."}
+      </span>
+    </button>
+  )}
+
+  {/* End Call Button */}
+  {callStatus !== "INACTIVE" && (
+    <button
+      className="btn-disconnect mt-20"
+      onClick={() => handleCallCancelled()} // Updated to use handleCancelled
+    >
+      {callStatus === "CANCELLED" ? "Cancel Call" : "End Call"}
+    </button>
+  )}
+</div>
     </>
   );
 };
