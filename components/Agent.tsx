@@ -9,7 +9,6 @@ import { vapi } from "@/lib/vapi.sdk";
 import { interviewer } from "@/constants";
 import { createFeedback } from "@/lib/actions/general.action";
 
-   
 enum CallStatus {
   INACTIVE = "INACTIVE",
   CONNECTING = "CONNECTING",
@@ -29,13 +28,14 @@ const Agent = ({
   feedbackId,
   type,
   questions,
+  userAvatar,
 }: AgentProps) => {
   const router = useRouter();
   const [callStatus, setCallStatus] = useState<CallStatus>(CallStatus.INACTIVE);
   const [messages, setMessages] = useState<SavedMessage[]>([]);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const [lastestMessage, setLastMessage] = useState<string>("");
-
+  const [lastMessage, setLastMessage] = useState<string>("");
+  
   useEffect(() => {
     const onCallStart = () => {
       setCallStatus(CallStatus.ACTIVE);
@@ -53,12 +53,12 @@ const Agent = ({
     };
 
     const onSpeechStart = () => {
-      console.log("speech start");
+      console.log("Speech start!");
       setIsSpeaking(true);
     };
 
     const onSpeechEnd = () => {
-      console.log("speech end");
+      console.log("Speech end!");
       setIsSpeaking(false);
     };
 
@@ -66,7 +66,6 @@ const Agent = ({
       console.log("Error:", error);
     };
 
-    // listeners
     vapi.on("call-start", onCallStart);
     vapi.on("call-end", onCallEnd);
     vapi.on("message", onMessage);
@@ -147,33 +146,23 @@ const Agent = ({
     vapi.stop();
   };
 
-  const latestMessage = messages[messages.length - 1]?.content;
-  const isCallInactiveOrFinished = callStatus === CallStatus.INACTIVE || callStatus === CallStatus.FINISHED;
-
-  return (
-    <>
-      
-      <div className="call-view">
-        {/* AI Interviewer Card */}
-        <div className="card-interviewer">
-          <div className="avatar">
-            <Image
-              src="/ai-avatar.png"
-              alt="vapi"
-              width={65}
-              height={54}
-              className="object-cover"
-            />
-            {isSpeaking && <span className="animate-speak" />}
-          </div>
-          <h3>AI Interviewer</h3>
-        </div>
+    return (
+        <>
+        <div className="call-view">
+            {/* AI Interviewer Card */}
+            <div className="card-interviewer">
+                <div className="avatar">
+                    <Image src="/ai-avatar-512.png" alt="AI Avatar" width={110} height={110} className="object-cover" />
+                    {isSpeaking && <span className="animate-speak" />}
+                </div>
+                <h3>AI Interviewer</h3>
+            </div>
 
         {/* User Profile Card */}
-        <div className="card-interviewer">
+        <div className="card-border">
           <div className="card-content">
             <Image
-              src="/user-avatar.png"
+              src={userAvatar || "/user-avatar.jpg"}
               alt="profile-image"
               width={539}
               height={539}
@@ -188,13 +177,13 @@ const Agent = ({
         <div className="transcript-border">
           <div className="transcript">
             <p
-              key={lastestMessage}
+              key={lastMessage}
               className={cn(
                 "transition-opacity duration-500 opacity-0",
                 "animate-fadeIn opacity-100"
               )}
             >
-              {lastestMessage}
+              {lastMessage}
             </p>
           </div>
         </div>
@@ -202,11 +191,7 @@ const Agent = ({
 
       <div className="w-full flex justify-center">
         {callStatus !== "ACTIVE" ? (
-        
-           <button className="relative btn-call" onClick={handleCall}>
-
-
-          {/* <button className="relative btn-call" onClick={() => handleCall()}> */}
+          <button className="relative btn-call" onClick={() => handleCall()}>
             <span
               className={cn(
                 "absolute animate-ping rounded-full opacity-75",
@@ -215,12 +200,14 @@ const Agent = ({
             />
 
             <span className="relative">
-              {isCallInactiveOrFinished ? "Start Call" : "..."} 
+              {callStatus === "INACTIVE" || callStatus === "FINISHED"
+                ? "Call"
+                : ". . ."}
             </span>
           </button>
         ) : (
           <button className="btn-disconnect" onClick={() => handleDisconnect()}>
-            End Call
+            End
           </button>
         )}
       </div>
