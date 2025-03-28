@@ -1,13 +1,16 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import Image from "next/image"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 
-import { cn } from "@/lib/utils";
-import { vapi } from "@/lib/vapi.sdk";
-import { interviewer } from "@/constants";
-import { createFeedback } from "@/lib/actions/general.action";
+import { cn } from "@/lib/utils"
+import { vapi } from "@/lib/vapi.sdk"
+import { interviewer } from "@/constants"
+import { createFeedback } from "@/lib/actions/general.action"
+import { Card, CardContent, CardTitle } from "@/components/ui/card"
+import { Button } from "./ui/button"
+
 
 enum CallStatus {
   INACTIVE = "INACTIVE",
@@ -155,46 +158,45 @@ const Agent = ({
 
   return (
     <>
-      <div className="call-view">
+      <div className="flex flex-row justify-center items-center gap-8 w-full">
         {/* AI Interviewer Card */}
-        <div className="card-interviewer">
-          <div className="avatar">
-            <Image
-              src="/ai-avatar-512.png"
-              alt="AI Avatar"
-              width={110}
-              height={110}
-              className="object-cover"
-            />
-            {isSpeaking && <span className="animate-speak" />}
-          </div>
-          <h3>AI Interviewer</h3>
-        </div>
+        <Card className="w-100 bg-black">
+          <CardContent className="flex flex-col items-center justify-center p-6 space-y-4">
+            <div className="relative">
+              <Image
+                src="/ai-avatar-512.png"
+                alt="AI Avatar"
+                width={120}
+                height={120}
+                className="object-cover rounded-full"
+              />
+              {isSpeaking && <span className="absolute bottom-0 right-0 animate-speak" />}
+            </div>
+            <CardTitle className="text-center">AI Interviewer</CardTitle>
+          </CardContent>
+        </Card>
 
         {/* User Profile Card */}
-        <div className="card-border">
-          <div className="card-content">
+        <Card className="w-100 bg-neutral-950">
+          <CardContent className="flex flex-col items-center justify-center p-6 space-y-4">
             <Image
               src={userAvatar || "/user-avatar.jpg"}
               alt="profile-image"
-              width={539}
-              height={539}
-              className="rounded-full object-cover size-[120px]"
+              width={120}
+              height={120}
+              className="rounded-full object-cover"
             />
-            <h3>{userName}</h3>
-          </div>
-        </div>
+            <CardTitle className="text-center">{userName}</CardTitle>
+          </CardContent>
+        </Card>
       </div>
 
       {messages.length > 0 && (
-        <div className="transcript-border">
+        <div className="transcript-border mt-6">
           <div className="transcript">
             <p
               key={lastMessage}
-              className={cn(
-                "transition-opacity duration-500 opacity-0",
-                "animate-fadeIn opacity-100",
-              )}
+              className={cn("transition-opacity duration-500 opacity-0", "animate-fadeIn opacity-100")}
             >
               {lastMessage}
             </p>
@@ -202,35 +204,24 @@ const Agent = ({
         </div>
       )}
 
-      <div className="w-full flex justify-center gap-4">
+      <div className="w-full flex justify-center gap-4 mt-6">
         {/* Start Call Button */}
         {callStatus !== "ACTIVE" && (
-          <button
-            className="relative btn-call mt-20"
-            onClick={() => handleCall()}
-          >
+          <Button className="relative font-semibold" onClick={() => handleCall()}>
             <span
-              className={cn(
-                "absolute animate-ping rounded-full opacity-75",
-                callStatus !== "CONNECTING" && "hidden",
-              )}
+              className={cn("absolute animate-ping opacity-75", callStatus !== "CONNECTING" && "hidden")}
             />
             <span className="relative">
-              {callStatus === "INACTIVE" ||
-              callStatus === "FINISHED" ||
-              callStatus === "CANCELLED"
-                ? "Start Call"
+              {callStatus === "INACTIVE" || callStatus === "FINISHED" || callStatus === "CANCELLED"
+                ? "Start Your Interview"
                 : ". . ."}
             </span>
-          </button>
+          </Button>
         )}
 
         {/* End Call Button */}
         {callStatus !== "INACTIVE" && (
-          <button
-            className="btn-disconnect mt-20"
-            onClick={() => handleCallCancelled()} // Updated to use handleCallCancelled
-          >
+          <button className="" onClick={() => handleCallCancelled()}>
             {callStatus === "CANCELLED" ? "Cancel Call" : "End Call"}
           </button>
         )}
