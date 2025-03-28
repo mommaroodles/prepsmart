@@ -22,6 +22,9 @@ interface Interview {
   createdAt: string;
   userId: string;
   type: string;
+  coverImage?: string;
+  level?: string;
+  questions?: string[];
   finalized: boolean;
 }
 
@@ -32,21 +35,28 @@ interface CreateFeedbackParams {
   feedbackId?: string;
 }
 
+// Add photoURL to your existing User interface
 interface User {
+  id: string;
   name: string;
   email: string;
-  id: string;
+  photoURL?: string;
+  emailVerified?: boolean;
 }
 
 interface InterviewCardProps {
-  interviewId?: string;
+  interviewId: string;
   userId?: string;
   role: string;
   type: string;
   techstack: string[];
   createdAt?: string;
+  coverImage?: string;
+  level?: string;
+  questions?: string[];
 }
 
+// Add userAvatar to the AgentProps interface
 interface AgentProps {
   userName: string;
   userId?: string;
@@ -54,6 +64,7 @@ interface AgentProps {
   feedbackId?: string;
   type: "generate" | "interview";
   questions?: string[];
+  userAvatar?: string;
 }
 
 interface RouteParams {
