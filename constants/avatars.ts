@@ -8,7 +8,6 @@ export const AVATAR_OPTIONS = [
   "user-avatar-img-7.jpg",
   "user-avatar-img-8.jpg",
   "user-avatar-img-9.jpg",
-  "user-avatar-img-10.jpg",
   "user-avatar-img-11.jpg",
   "user-avatar-img-12.jpg",
   "user-avatar-img-13.jpg",
