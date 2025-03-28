@@ -1,5 +1,5 @@
-import AuthForm from '@/components/AuthForm'
-import Footer from '@/components/Footer'
+import AuthForm from "@/components/AuthForm";
+import Footer from "@/components/Footer";
 
 const Page = () => {
   return (
@@ -9,12 +9,12 @@ const Page = () => {
           <AuthForm type="sign-in" />
         </div>
       </main>
-      
-      <div className="mt-auto">
+
+      <div className="mt-auto pt-[80px]">
         <Footer />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

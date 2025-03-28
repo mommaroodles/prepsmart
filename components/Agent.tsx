@@ -36,7 +36,7 @@ const Agent = ({
   const [messages, setMessages] = useState<SavedMessage[]>([]);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [lastMessage, setLastMessage] = useState<string>("");
-  
+
   useEffect(() => {
     const onCallStart = () => {
       setCallStatus(CallStatus.ACTIVE);
@@ -153,17 +153,23 @@ const Agent = ({
     router.push("/");
   };
 
-    return (
-        <>
-        <div className="call-view">
-            {/* AI Interviewer Card */}
-            <div className="card-interviewer">
-                <div className="avatar">
-                    <Image src="/ai-avatar-512.png" alt="AI Avatar" width={110} height={110} className="object-cover" />
-                    {isSpeaking && <span className="animate-speak" />}
-                </div>
-                <h3>AI Interviewer</h3>
-            </div>
+  return (
+    <>
+      <div className="call-view">
+        {/* AI Interviewer Card */}
+        <div className="card-interviewer">
+          <div className="avatar">
+            <Image
+              src="/ai-avatar-512.png"
+              alt="AI Avatar"
+              width={110}
+              height={110}
+              className="object-cover"
+            />
+            {isSpeaking && <span className="animate-speak" />}
+          </div>
+          <h3>AI Interviewer</h3>
+        </div>
 
         {/* User Profile Card */}
         <div className="card-border">
@@ -187,7 +193,7 @@ const Agent = ({
               key={lastMessage}
               className={cn(
                 "transition-opacity duration-500 opacity-0",
-                "animate-fadeIn opacity-100"
+                "animate-fadeIn opacity-100",
               )}
             >
               {lastMessage}
@@ -196,34 +202,39 @@ const Agent = ({
         </div>
       )}
 
-<div className="w-full flex justify-center gap-4">
-  {/* Start Call Button */}
-  {callStatus !== "ACTIVE" && (
-    <button className="relative btn-call mt-20" onClick={() => handleCall()}>
-      <span
-        className={cn(
-          "absolute animate-ping rounded-full opacity-75",
-          callStatus !== "CONNECTING" && "hidden"
+      <div className="w-full flex justify-center gap-4">
+        {/* Start Call Button */}
+        {callStatus !== "ACTIVE" && (
+          <button
+            className="relative btn-call mt-20"
+            onClick={() => handleCall()}
+          >
+            <span
+              className={cn(
+                "absolute animate-ping rounded-full opacity-75",
+                callStatus !== "CONNECTING" && "hidden",
+              )}
+            />
+            <span className="relative">
+              {callStatus === "INACTIVE" ||
+              callStatus === "FINISHED" ||
+              callStatus === "CANCELLED"
+                ? "Start Call"
+                : ". . ."}
+            </span>
+          </button>
         )}
-      />
-      <span className="relative">
-        {callStatus === "INACTIVE" || callStatus === "FINISHED" || callStatus === "CANCELLED"
-          ? "Start Call"
-          : ". . ."}
-      </span>
-    </button>
-  )}
 
-  {/* End Call Button */}
-  {callStatus !== "INACTIVE" && (
-    <button
-      className="btn-disconnect mt-20"
-      onClick={() => handleCallCancelled()} // Updated to use handleCancelled
-    >
-      {callStatus === "CANCELLED" ? "Cancel Call" : "End Call"}
-    </button>
-  )}
-</div>
+        {/* End Call Button */}
+        {callStatus !== "INACTIVE" && (
+          <button
+            className="btn-disconnect mt-20"
+            onClick={() => handleCallCancelled()} // Updated to use handleCallCancelled
+          >
+            {callStatus === "CANCELLED" ? "Cancel Call" : "End Call"}
+          </button>
+        )}
+      </div>
     </>
   );
 };
