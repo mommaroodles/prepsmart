@@ -42,7 +42,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
       </header>
 
       {/* Main Content */}
-      <main className="pt-[70px]">{children}</main>
+      <main className="pt-[50px]">{children}</main>
       <Footer />
     </div>
   );
