@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
-import { redirect } from "next/navigation";
-import Footer from "@/components/Footer";
+import { ReactNode } from "react"
+import { redirect } from "next/navigation"
+import Footer from "@/components/Footer"
 
-import { isAuthenticated, getCurrentUser } from "@/lib/actions/auth.action";
-import SignOutButton from "@/components/SignOutButton";
-import Logo from "@/components/Logo";
-import AvatarPicker from "@/components/avatar/AvatarPicker";
+import { isAuthenticated, getCurrentUser } from "@/lib/actions/auth.action"
+import SignOutButton from "@/components/SignOutButton"
+import Logo from "@/components/Logo"
+import AvatarPicker from "@/components/avatar/AvatarPicker"
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
   const isUserAuthenticated = await isAuthenticated();

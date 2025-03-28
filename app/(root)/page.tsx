@@ -1,12 +1,12 @@
-import HeroSection from "@/components/HeroSection";
-import InterviewCard from "@/components/InterviewCard";
+import HeroSection from "@/components/HeroSection"
+import InterviewCard from "@/components/InterviewCard"
 
-import { getCurrentUser } from "@/lib/actions/auth.action";
+import { getCurrentUser } from "@/lib/actions/auth.action"
 import {
   getInterviewsByUserId,
   getLatestInterviews,
-} from "@/lib/actions/general.action";
-import Footer from "@/components/Footer";
+} from "@/lib/actions/general.action"
+import Footer from "@/components/Footer"
 
 async function Home() {
   const user = await getCurrentUser();
@@ -87,4 +87,4 @@ async function Home() {
   );
 }
 
-export default Home;
+export default Home
