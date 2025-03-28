@@ -1,36 +1,51 @@
-import Link from "next/link";
-import Image from "next/image";
-
 import { ReactNode } from "react";
 import { redirect } from "next/navigation";
+import Footer from "@/components/Footer";
 
-import { isAuthenticated } from "@/lib/actions/auth.action";
+import { isAuthenticated, getCurrentUser } from "@/lib/actions/auth.action";
+import SignOutButton from "@/components/SignOutButton";
+import Logo from "@/components/Logo";
+import AvatarPicker from "@/components/avatar/AvatarPicker";
 
-export const metadata: Metadata = {
-  title: 'Welcome to PrepSmart',
-  description: 'Get Interview-Ready with AI-Powered Practice & Feedback',
-  image: '/logo.svg',
-  url: 'https://prepsmart.wpdevs.co.za',
-  type: 'website',  
-}
+const RootLayout = async ({ children }: { children: ReactNode }) => {
+  const isUserAuthenticated = await isAuthenticated();
+  if (!isUserAuthenticated) redirect("/sign-in");
 
-const Layout = async ({ children }: { children: ReactNode }) => {
-  // these two lines also appear in the auth/layout.tsx file
-  //const isUserAuthenticated = await isAuthenticated();
-  //if (!isUserAuthenticated) redirect("/sign-in");
+  // Get current user data
+  const user = await getCurrentUser();
+
+  // Default avatar path if user doesn't have one set
+  const userAvatar = user?.photoURL || "/user-avatar.jpg";
 
   return (
     <div className="root-layout">
-      <nav>
-        <Link href="/" className="flex items-center gap-2">
-          {/* <Image src="/logo.svg" alt="MockMate Logo" width={38} height={32} /> */}
-          <h2 className="text-primary-100">PrepSmart</h2>
-        </Link>
-      </nav>
+      {/* Fixed Navbar */}
+      <header className="fixed top-0 left-0 w-full bg-dark-100 z-50 shadow-md">
+        <nav className="w-full flex justify-between items-center px-6 py-4">
+          <Logo link />
 
-      {children}
+          {/* User profile section */}
+          {user && (
+            <div className="flex items-center gap-3">
+              <span className="text-light-100 text-lg font-medium">
+                {user.name}
+              </span>
+              <AvatarPicker
+                currentAvatar={userAvatar}
+                userId={user.id}
+                userName={user.name}
+              />
+              <SignOutButton />
+            </div>
+          )}
+        </nav>
+      </header>
+
+      {/* Main Content */}
+      <main className="pt-[70px]">{children}</main>
+      <Footer />
     </div>
   );
 };
 
-export default Layout;
+export default RootLayout;
