@@ -1,4 +1,3 @@
-<div align="center">
   <br />
       <img src="https://github.com/mommaroodles/prepsmart/blob/main/public/preview.png" alt="Project Banner">
     </a>
@@ -11,7 +10,7 @@
     <img src="https://img.shields.io/badge/-Firebase-black?style=for-the-badge&logoColor=white&logo=firebase&color=DD2C00" alt="firebase" />
   </div>
 
-  <h3 align="center">PrepSmart: A job interview preparation platform powered by Vapi AI Voice agents</h3>
+  <h3 text-align="center">PrepSmart: A job interview preparation platform powered by Vapi AI Voice agents</h3>
 
 ## 📋 <a name="table">Table of Contents</a>
 
