@@ -12,7 +12,7 @@ const Footer = () => {
         </p>
 
         <Link
-          href="https://github.com/mommaroodles"
+          href="https://github.com/mommaroodles/prepsmart"
           target="_blank"
           rel="noopener noreferrer"
           className="text-light-300 hover:text-primary-100 transition-colors"
