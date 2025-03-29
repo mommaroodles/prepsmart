@@ -52,19 +52,6 @@ const InterviewCard = async ({
   const badgeColor = getBadgeVariant(type)
 
 
-  // Level badge color mapping
-  /*   const levelBadgeColor = {
-      "entry level": "bg-emerald-600",
-      beginner: "bg-teal-600",
-      junior: "bg-lime-600",
-      intermediate: "bg-amber-500",
-      senior: "bg-orange-500",
-      advanced: "bg-sky-600",
-      expert: "bg-indigo-600",
-    }[type?.toLowerCase() || "beginner"] || "bg-green-600"; */
-
-
-
 
   /*   const getBadgeLevelVariant = (level: string) => {
       switch (level.toLowerCase()) {
