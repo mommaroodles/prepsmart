@@ -1,19 +1,12 @@
-import dayjs from "dayjs"
-import Link from "next/link"
-import Image from "next/image"
+import dayjs from "dayjs";
+import Link from "next/link";
+import Image from "next/image";
 
-import { Button } from "./ui/button"
-import { Card, CardContent, CardFooter } from "./ui/card"
-import DisplayTechIcons from "./DisplayTechIcons"
+import { Button } from "./ui/button";
+import DisplayTechIcons from "./DisplayTechIcons";
 
-/* Icons */
-import { FaPersonCircleQuestion, FaStar } from "react-icons/fa6";
-import { FaRegCalendarAlt, FaArrowRight } from "react-icons/fa";
-
-
-import { cn, getRandomInterviewCover } from "@/lib/utils"
-import { getFeedbackByInterviewId } from "@/lib/actions/general.action"
-
+import { cn, getRandomInterviewCover } from "@/lib/utils";
+import { getFeedbackByInterviewId } from "@/lib/actions/general.action";
 
 const InterviewCard = async ({
   interviewId,
@@ -29,31 +22,24 @@ const InterviewCard = async ({
   const feedback =
     userId && interviewId
       ? await getFeedbackByInterviewId({
-        interviewId,
-        userId,
-      })
+          interviewId,
+          userId,
+        })
       : null;
 
   const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
 
-
-  const getBadgeVariant = (type: string) => {
-    switch (type.toLowerCase()) {
-      case "technical":
-        return "bg-blue-600 text-slate-50"
-      case "behavioral":
-        return "bg-emerald-600 text-slate-50"
-      case "mixed":
-        return "bg-violet-600 text-slate-50"
-      default:
-        return "bg-primary text-primary-foreground"
-    }
-  }
-  const badgeColor = getBadgeVariant(type)
-
+  // Type badge color mapping
+  const typeBadgeColor =
+    {
+      Behavioral: "bg-light-800",
+      Mixed: "bg-yellow-600",
+      Technical: "bg-blue-600",
+    }[normalizedType] || "bg-violet-600";
 
   // Level badge color mapping
-  /*   const levelBadgeColor = {
+  const levelBadgeColor =
+    {
       "entry level": "bg-emerald-600",
       beginner: "bg-teal-600",
       junior: "bg-lime-600",
@@ -61,137 +47,110 @@ const InterviewCard = async ({
       senior: "bg-orange-500",
       advanced: "bg-sky-600",
       expert: "bg-indigo-600",
-    }[type?.toLowerCase() || "beginner"] || "bg-green-600"; */
-
-
-
-
-  /*   const getBadgeLevelVariant = (level: string) => {
-      switch (level.toLowerCase()) {
-        case "entry":
-          return "bg-blue-600 text-slate-50";
-        case "beginner":
-          return "bg-teal-600 text-slate-50"; // Example color for beginner
-        case "junior":
-        case "intermediate":
-        case "senior":
-        case "advanced":
-        case "expert":
-          return "bg-violet-600 text-slate-50";
-        default:
-          return "bg-gray-600 text-slate-50"; // Default case for unspecified levels
-      }
-    }
-  
-    const badgeLevelColor = getBadgeLevelVariant(type);
-    console.log("Badge Level Color:", badgeLevelColor); // Debugging output */
-
-
-
+    }[level?.toLowerCase() || "beginner"] || "bg-green-600";
 
   const formattedDate = dayjs(
     feedback?.createdAt || createdAt || Date.now(),
-  ).format("D MMM, YYYY");
+  ).format("MMM D, YYYY");
 
   // Use coverImage from props if available, otherwise use random cover
   const imageSrc = coverImage || getRandomInterviewCover();
 
   return (
-    <Card className="w-[360px] max-sm:w-full min-h-[450px] relative overflow-hidden border border-border bg-card shadow-md hover:shadow-lg transition-shadow duration-300">
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-800/10 to-transparent h-24 z-0"></div>
+    <div className="card-border w-[360px] max-sm:w-full min-h-96">
+      <div className="card-interview relative">
+        <div>
+          {/* Type Badge - Top Right */}
+          <div
+            className={cn(
+              "absolute top-0 right-0 w-fit px-4 py-2 rounded-bl-lg z-10",
+              typeBadgeColor,
+            )}
+          >
+            <p className="badge-text font-medium text-white">
+              {normalizedType}
+            </p>
+          </div>
 
-      {/* Type Badge */}
+          {/* Level Badge - Top Left */}
+          <div
+            className={cn(
+              "absolute top-0 left-0 w-fit px-4 py-2 rounded-br-lg z-10",
+              levelBadgeColor,
+            )}
+          >
+            <p className="badge-text font-medium text-white capitalize">
+              {level || "Beginner"}
+            </p>
+          </div>
 
-      <div className={cn("absolute top-0 right-0 w-fit px-4 py-2 rounded-bl-lg z-10", badgeColor)}>
-        <p className="text-sm font-medium">{normalizedType}</p>
-      </div>
-
-      {/*       <div className={cn("absolute top-0 left-0 w-fit px-4 py-2 rounded-bl-lg z-10", badgeLevelColor)}>
-        <p className="text-sm font-medium">{level || "Beginner"}</p>
-      </div> */}
-
-
-      <CardContent className="p-6 pt-10 flex flex-col items-center">
-        {/* Cover Image */}
-        <div className="relative mb-4">
-          <div className="absolute inset-0 rounded-full bg-gradient-to-b from-primary/20 to-primary/5 -m-1 blur-sm"></div>
+          {/* Cover Image */}
           <Image
             src={imageSrc}
             alt="cover-image"
             width={90}
             height={90}
-            className="rounded-full object-cover size-[90px] border-2 border-muted bg-card relative z-10"
+            className="rounded-full object-fit size-[90px] mt-6 mx-auto"
           />
-        </div>
 
-        {/* Interview Role */}
-        <h3 className="mt-3 text-xl font-semibold text-center capitalize text-foreground">{role} Interview</h3>
+          {/* Interview Role */}
+          <h3 className="mt-5 capitalize">{role} Interview</h3>
 
-        {/* Level*/}
-        {/*         <div className="flex flex-row items-center gap-5 mt-4 bg-muted/50 rounded-full px-4 py-2">
-          <FaPersonCircleQuestion size={18} className="text-neutral-50" />
-          <p className="text-xs items-center text-amber-300">
-            {level || "Beginner"}
-          </p>
-        </div> */}
+          {/* Date & Score & Questions Count */}
+          <div className="flex flex-row flex-wrap gap-5 mt-3">
+            <div className="flex flex-row gap-2">
+              <Image
+                src="/calendar.svg"
+                width={22}
+                height={22}
+                alt="calendar icon"
+              />
+              <p>{formattedDate}</p>
+            </div>
 
+            <div className="flex flex-row gap-2 items-center">
+              <Image src="/star-2.svg" width={22} height={22} alt="star icon" />
+              <p>{feedback?.totalScore || "---"}/100</p>
+            </div>
 
-        {/* Date & Score */}
-        <div className="flex flex-row justify-center gap-5 mt-4 bg-muted/50 rounded-full px-4 py-2">
-          <div className="flex flex-row gap-2 items-center">
-            <FaRegCalendarAlt size={18} className="text-neutral-50" />
-            <p className="text-sm text-muted-foreground">{formattedDate}</p>
+            <div className="flex flex-row gap-2 items-center">
+              <Image
+                src="/question.svg"
+                width={22}
+                height={22}
+                alt="question icon"
+              />
+              <p>
+                {questions?.length || 0}{" "}
+                {questions?.length === 1 ? "question" : "questions"}
+              </p>
+            </div>
           </div>
 
-          <div className="flex flex-row gap-2 items-center">
-            <FaStar size={18} className="text-amber-500" />
-            <p className="text-sm font-medium">
-              {feedback?.totalScore || "---"}
-              <span className="text-muted-foreground">/100</span>
-            </p>
-          </div>
-        </div>
-
-        {/* Number of Questions */}
-        <div className="flex flex-row items-center gap-5 mt-4 bg-muted/50 rounded-full px-4 py-2">
-          <FaPersonCircleQuestion size={18} className="text-neutral-50" />
-          <p className="text-xs">
-            {questions?.length || 0} {questions?.length === 1 ? "Question" : "Questions"}
+          {/* Feedback or Placeholder Text */}
+          <p className="line-clamp-2 mt-5">
+            {feedback?.finalAssessment ||
+              "You haven't taken this interview yet. Take it now to improve your skills."}
           </p>
         </div>
 
-        {/* Feedback or Placeholder Text */}
-        <div className="mt-6 bg-muted/30 rounded-lg p-4 w-full">
-          <p className="line-clamp-2 text-sm text-muted-foreground">
-            {feedback?.finalAssessment || "You haven't taken this interview yet. Take it now to improve your skills."}
-          </p>
+        <div className="flex flex-row justify-between">
+          <DisplayTechIcons techStack={techstack} />
+
+          <Button className="btn-primary">
+            <Link
+              href={
+                feedback
+                  ? `/interview/${interviewId}/feedback`
+                  : `/interview/${interviewId}`
+              }
+            >
+              {feedback ? "Check Feedback" : "View Interview"}
+            </Link>
+          </Button>
         </div>
-      </CardContent>
-
-      <CardFooter className="flex flex-row justify-between p-6 pt-0 mt-auto">
-        {/* Technology Icons */}
-        <DisplayTechIcons techStack={techstack} />
-
-        <Button variant={feedback ? "default" : "primary"} className="transition-all duration-300">
-          <Link
-            href={feedback ? `/interview/${interviewId}/feedback` : `/interview/${interviewId}`}
-            className="flex items-center gap-2"
-          >
-            {feedback ? (
-              <>
-                Check Feedback
-                <FaArrowRight size={4} className="text-neutral-50" />
-              </>
-            ) : (
-              <>
-                View Interview
-                <FaArrowRight size={4} className="text-neutral-50" />
-              </>
-            )}
-          </Link>
-        </Button>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 };
 
