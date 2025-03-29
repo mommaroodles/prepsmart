@@ -24,7 +24,7 @@ async function Home() {
       <HeroSection
         title="AI-Powered"
         subtitle="Real-Time Interview Platform"
-        description2="Practice Interview Questions & Get Instant Feedback."
+        description="Practice Interview Questions & Get Instant Feedback."
         buttonText="Start an Interview"
         buttonLink="/interview"
       />

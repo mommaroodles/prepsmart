@@ -13,7 +13,7 @@ interface HeroSectionProps {
 const HeroSection = ({
   title,
   subtitle,
-  description2,
+  description,
   buttonText,
   buttonLink,
 }: HeroSectionProps) => {
@@ -23,7 +23,7 @@ const HeroSection = ({
       <div className="container mx-auto px-4 flex flex-col items-center gap-6 max-w-[1200px]">
         <h1 className="TextGradient">{title}</h1>
               <h2>{subtitle}</h2>
-              <p className="text-3xl">{description2}</p>
+              <p className="text-3xl">{description}</p>
               <button className="btn-primary"
                 onClick={() => router.push(buttonLink)}>
               {buttonText}
