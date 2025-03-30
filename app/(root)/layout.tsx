@@ -20,7 +20,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
   return (
     <div className="root-layout">
       {/* Fixed Navbar */}
-      <header className="fixed top-0 left-0 w-full bg-dark-100 z-50 shadow-md">
+      <header className="fixed top-0 left-0 w-full bg-dark-100 border-b border-dark-300 z-50 shadow-md">
         <nav className="w-full flex justify-between items-center px-6 py-4">
           <Logo link />
 
@@ -42,7 +42,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
       </header>
 
       {/* Main Content */}
-      <main className="pt-[50px]">{children}</main>
+      <main className="pt-[50px] pb-[50px]">{children}</main>
       <Footer />
     </div>
   );
