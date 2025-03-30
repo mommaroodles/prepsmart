@@ -1,3 +1,5 @@
+//home page
+
 import HeroSection from "@/components/HeroSection"
 import InterviewCard from "@/components/InterviewCard"
 
@@ -22,18 +24,18 @@ async function Home() {
   return (
     <>
       <HeroSection
-        title="AI-Powered"
-        subtitle="Real-Time Interview Platform"
+        title="AI Powered"
+        subtitle="Real Time Interview Platform"
         description="Practice Interview Questions & Get Instant Feedback."
         buttonText="Start an Interview"
         buttonLink="/interview"
       />
 
       <section className="flex flex-col gap-6 mt-15">
-        <h4>
-          Interviews created by {}
-          <span className="text-primary-200">{user?.name}</span>
-        </h4>
+        <h5>
+          Interviews created by { }
+          <span className="text-blue-500">{user?.name}</span>
+        </h5>
 
         <div className="interviews-section">
           {hasPastInterviews ? (
