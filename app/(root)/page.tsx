@@ -1,14 +1,14 @@
 //home page
 
-import HeroSection from "@/components/HeroSection"
-import InterviewCard from "@/components/InterviewCard"
-
-import { getCurrentUser } from "@/lib/actions/auth.action"
+import HeroSection from "@/components/HeroSection";
+import InterviewCard from "@/components/InterviewCard";
+import { getCurrentUser } from "@/lib/actions/auth.action";
 import {
   getInterviewsByUserId,
   getLatestInterviews,
-} from "@/lib/actions/general.action"
-import Footer from "@/components/Footer"
+} from "@/lib/actions/general.action";
+import Footer from "@/components/Footer";
+import { Suspense } from 'react';
 
 async function Home() {
   const user = await getCurrentUser();
@@ -36,52 +36,56 @@ async function Home() {
           Interviews created by { }
           <span className="text-blue-500">{user?.name}</span>
         </h5>
+        <Suspense fallback={<div>Loading dynamic content...</div>}>
+          <div className="interviews-section">
 
-        <div className="interviews-section">
-          {hasPastInterviews ? (
-            userInterviews?.map((interview) => (
-              <InterviewCard
-                key={interview.id}
-                userId={user?.id}
-                interviewId={interview.id}
-                role={interview.role}
-                type={interview.type}
-                techstack={interview.techstack}
-                createdAt={interview.createdAt}
-                coverImage={interview.coverImage}
-                level={interview.level}
-                questions={interview.questions}
-              />
-            ))
-          ) : (
-            <p>You haven&apos;t taken any interviews yet</p>
-          )}
-        </div>
+            {hasPastInterviews ? (
+              userInterviews?.map((interview) => (
+
+                <InterviewCard
+                  key={interview.id}
+                  userId={user?.id}
+                  interviewId={interview.id}
+                  role={interview.role}
+                  type={interview.type}
+                  techstack={interview.techstack}
+                  createdAt={interview.createdAt}
+                  coverImage={interview.coverImage}
+                  level={interview.level}
+                  questions={interview.questions}
+                />
+              ))
+            ) : (
+              <p>You haven&apos;t taken any interviews yet</p>
+            )}
+          </div>
+        </Suspense>
       </section>
 
       <section className="flex flex-col gap-6 mt-8">
-        <h4>All Interviews</h4>
-
-        <div className="interviews-section">
-          {hasUpcomingInterviews ? (
-            allInterview?.map((interview) => (
-              <InterviewCard
-                key={interview.id}
-                userId={user?.id}
-                interviewId={interview.id}
-                role={interview.role}
-                type={interview.type}
-                techstack={interview.techstack}
-                createdAt={interview.createdAt}
-                coverImage={interview.coverImage}
-                level={interview.level}
-                questions={interview.questions}
-              />
-            ))
-          ) : (
-            <p>There are no interviews available</p>
-          )}
-        </div>
+        <h5>All Interviews</h5>
+        <Suspense fallback={<div>Loading dynamic content...</div>}>
+          <div className="interviews-section">
+            {hasUpcomingInterviews ? (
+              allInterview?.map((interview) => (
+                <InterviewCard
+                  key={interview.id}
+                  userId={user?.id}
+                  interviewId={interview.id}
+                  role={interview.role}
+                  type={interview.type}
+                  techstack={interview.techstack}
+                  createdAt={interview.createdAt}
+                  coverImage={interview.coverImage}
+                  level={interview.level}
+                  questions={interview.questions}
+                />
+              ))
+            ) : (
+              <p>There are no interviews available</p>
+            )}
+          </div>
+        </Suspense>
       </section>
 
       <Footer />
