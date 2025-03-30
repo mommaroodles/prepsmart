@@ -21,13 +21,13 @@ const HeroSection = ({
   return (
     <section aria-labelledby="hero-title" className="py-2 border-b-2 border-blue-500">
       <div className="container mx-auto px-4 flex flex-col items-center gap-6 max-w-[1200px]">
-        <h1 className="TextGradient">{title}</h1>
-              <h2>{subtitle}</h2>
-              <p className="text-3xl">{description}</p>
-              <button className="btn-primary"
-                onClick={() => router.push(buttonLink)}>
-              {buttonText}
-              </button>
+        <h1 className="TextGradient text-center sm:text-left">{title}</h1>
+        <h2 className="text-center sm:text-left">{subtitle}</h2>
+        <p className="text-3xl text-center sm:text-left">{description}</p>
+        <button className="btn-primary"
+          onClick={() => router.push(buttonLink)}>
+          {buttonText}
+        </button>
       </div>
     </section>
   );
