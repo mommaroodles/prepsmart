@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useState } from "react";
-
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import Link from "next/link";
@@ -16,35 +15,33 @@ import {
   sendEmailVerification,
   reload,
   signInWithPopup,
-  GoogleAuthProvider,
+  GoogleAuthProvider
 } from "firebase/auth";
 import { auth } from "@/firebase/client";
 import { signIn, signUp } from "@/lib/actions/auth.action";
-
-
 import { Input } from "@/components/ui/input";
 import VerificationScreen from "./auth/VerificationScreen";
 import AuthCard from "./auth/AuthCard";
 import AuthHeader from "./auth/AuthHeader";
 
-type FormType = "sign-in" | "sign-up"
+type FormType = 'sign-in' | 'sign-up'
 
 const authFormSchema = (type: FormType) => {
   return z.object({
-    name: type === "sign-up" ? z.string().min(3) : z.string().optional(),
+    name: type === 'sign-up' ? z.string().min(3) : z.string().optional(),
     email: z.string().email(),
     password: z.string().min(3),
-  });
+  })
 }
 
 const AuthForm = ({ type }: { type: FormType }) => {
-  const router = useRouter()
-  const formSchema = authFormSchema(type)
-  const [verificationSent, setVerificationSent] = useState(false)
-  const [userEmail, setUserEmail] = useState("")
-  const [isResending, setIsResending] = useState(false)
-  const [isChecking, setIsChecking] = useState(false)
-  const [isGoogleLoading, setIsGoogleLoading] = useState(false)
+  const router = useRouter();
+  const formSchema = authFormSchema(type);
+  const [verificationSent, setVerificationSent] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
+  const [isResending, setIsResending] = useState(false);
+  const [isChecking, setIsChecking] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -53,17 +50,17 @@ const AuthForm = ({ type }: { type: FormType }) => {
       email: "",
       password: "",
     },
-  });
+  })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      if (type === "sign-up") {
-        const { name, email, password } = values
+      if (type === 'sign-up') {
+        const { name, email, password } = values;
 
-        const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
+        const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
 
         // Send verification email
-        await sendEmailVerification(userCredentials.user)
+        await sendEmailVerification(userCredentials.user);
 
         const result = await signUp({
           uid: userCredentials.user.uid,
@@ -73,61 +70,61 @@ const AuthForm = ({ type }: { type: FormType }) => {
         })
 
         if (!result?.success) {
-          toast.error(result?.message)
-          return
+          toast.error(result?.message);
+          return;
         }
 
         // Show verification screen
-        setUserEmail(email)
-        setVerificationSent(true)
-        toast.success("Account created. Please verify your email.")
+        setUserEmail(email);
+        setVerificationSent(true);
+        toast.success('Account created. Please verify your email.');
       } else {
-        const { email, password } = values
+        const { email, password } = values;
 
-        const userCredential = await signInWithEmailAndPassword(auth, email, password)
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
         // Check if email is verified
         if (!userCredential.user.emailVerified) {
-          setUserEmail(email)
-          setVerificationSent(true)
-          toast.error("Please verify your email before signing in.")
-          return
+          setUserEmail(email);
+          setVerificationSent(true);
+          toast.error('Please verify your email before signing in.');
+          return;
         }
 
-        const idToken = await userCredential.user.getIdToken()
+        const idToken = await userCredential.user.getIdToken();
 
         if (!idToken) {
-          toast.error("Sign in failed")
-          return
+          toast.error('Sign in failed')
+          return;
         }
 
         await signIn({
           email,
-          idToken,
+          idToken
         })
 
-        toast.success("Sign in successfully.")
-        router.push("/")
+        toast.success('Sign in successfully.');
+        router.push('/')
       }
     } catch (error) {
-      console.log(error)
-      toast.error(`There was an error: ${error}`)
+      console.log(error);
+      toast.error('There was an error: ${error}')
     }
   }
 
   const handleResendVerification = async () => {
     try {
-      setIsResending(true)
+      setIsResending(true);
       // Re-authenticate to get the user object
-      const userCredential = await signInWithEmailAndPassword(auth, userEmail, form.getValues().password)
+      const userCredential = await signInWithEmailAndPassword(auth, userEmail, form.getValues().password);
 
-      await sendEmailVerification(userCredential.user)
-      toast.success("Verification email resent. Please check your inbox.")
+      await sendEmailVerification(userCredential.user);
+      toast.success('Verification email resent. Please check your inbox.');
     } catch (error) {
-      console.error("Error resending verification:", error)
-      toast.error("Failed to resend verification email. Please try again.")
+      console.error('Error resending verification:', error);
+      toast.error('Failed to resend verification email. Please try again.');
     } finally {
-      setIsResending(false)
+      setIsResending(false);
     }
   }
 
@@ -135,25 +132,25 @@ const AuthForm = ({ type }: { type: FormType }) => {
     try {
       setIsChecking(true)
       // Re-authenticate to get the user object
-      const userCredential = await signInWithEmailAndPassword(auth, userEmail, form.getValues().password)
+      const userCredential = await signInWithEmailAndPassword(auth, userEmail, form.getValues().password);
 
       // Reload the user to get the latest emailVerified status
-      await reload(userCredential.user)
+      await reload(userCredential.user);
 
       if (userCredential.user.emailVerified) {
         // User is verified, proceed with sign in
         const idToken = await userCredential.user.getIdToken()
         await signIn({ email: userEmail, idToken })
-        toast.success("Email verified successfully. Signing in...")
-        router.push("/")
+        toast.success('Email verified successfully. Signing in...');
+        router.push("/");
       } else {
-        toast.error("Your email is not verified yet. Please check your inbox.")
+        toast.error('Your email is not verified yet. Please check your inbox.');
       }
     } catch (error) {
-      console.error("Error checking verification:", error)
-      toast.error("Failed to check verification status. Please try again.")
+      console.error('Error checking verification:', error)
+      toast.error('Failed to check verification status. Please try again.')
     } finally {
-      setIsChecking(false)
+      setIsChecking(false);
     }
   }
 
@@ -190,41 +187,41 @@ const AuthForm = ({ type }: { type: FormType }) => {
         })
 
         if (!signUpResult?.success) {
-          toast.error(signUpResult?.message || "Failed to create account")
+          toast.error(signUpResult?.message || 'Failed to create account');
           setIsGoogleLoading(false)
-          return
+          return;
         }
 
         // Sign in the user with your backend
         const signInResult = await signIn({
-          email: user.email || "",
+          email: user.email || '',
           idToken,
-        })
+        });
 
         if (!signInResult?.success) {
-          toast.error(signInResult?.message || "Failed to sign in")
+          toast.error(signInResult?.message || 'Failed to sign in')
           setIsGoogleLoading(false)
-          return
+          return;
         }
 
-        toast.success("Signed in successfully with Google")
+        toast.success('Signed in successfully with Google')
 
         // Use router.replace instead of push to avoid navigation issues
         router.replace("/")
       } catch (popupError: unknown) {
-        console.error("Popup error:", popupError)
+        console.error('Popup error:', popupError)
 
         if (
           (popupError as { code?: string }).code === "auth/popup-closed-by-user" ||
           (popupError as { code?: string }).code === "auth/popup-blocked" ||
           (popupError as Error).message?.includes("Cross-Origin-Opener-Policy")
         ) {
-          toast.error("Popup authentication failed. Please try again.")
+          toast.error('Popup authentication failed. Please try again.')
           throw popupError // Re-throw to be caught by the outer catch
         }
       }
     } catch (error: unknown) {
-      console.error("Google sign-in error:", error)
+      console.error('Google sign-in error:', error)
 
       // Handle specific error cases
       if ((error as { code?: string }).code === "auth/popup-closed-by-user") {
@@ -237,7 +234,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
     } finally {
       setIsGoogleLoading(false)
     }
-  }
+  };
 
   const isSignIn = type === "sign-in"
 
@@ -258,7 +255,9 @@ const AuthForm = ({ type }: { type: FormType }) => {
   // Regular auth form
   return (
     <AuthCard>
-      <AuthHeader title="PrepSmart" description="AI Powered Real Time Interview Platform" />
+      <AuthHeader
+        title="PrepSmart"
+        description="AI Powered Real Time Interview Platform" />
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6 mt-4">
@@ -360,9 +359,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
       </p>
     </AuthCard>
 
-  )
-}
+  );
+};
 
-export default AuthForm
-
-
+export default AuthForm;
