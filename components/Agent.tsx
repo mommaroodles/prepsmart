@@ -145,11 +145,6 @@ const Agent = ({
     }
   };
 
-  const handleDisconnect = () => {
-    setCallStatus(CallStatus.FINISHED);
-    vapi.stop();
-  };
-
   const handleCallCancelled = () => {
     setCallStatus(CallStatus.CANCELLED);
     vapi.stop();
@@ -207,12 +202,12 @@ const Agent = ({
       <div className="w-full flex justify-center gap-4 mt-6">
         {/* Start Call Button */}
         {callStatus !== "ACTIVE" && (
-          <Button className="relative font-semibold" onClick={() => handleCall()}>
+          <Button className="relative font-semibold" onClick={handleCall}>
             <span
-              className={cn("absolute animate-ping opacity-75", callStatus !== "CONNECTING" && "hidden")}
+              className={cn("absolute animate-ping opacity-75", callStatus !== CallStatus.CONNECTING && "hidden")}
             />
             <span className="relative">
-              {callStatus === "INACTIVE" || callStatus === "FINISHED" || callStatus === "CANCELLED"
+              {callStatus === CallStatus.INACTIVE || callStatus === CallStatus.FINISHED || callStatus === CallStatus.CANCELLED
                 ? "Start Your Interview"
                 : ". . ."}
             </span>
@@ -221,9 +216,9 @@ const Agent = ({
 
         {/* End Call Button */}
         {callStatus !== "INACTIVE" && (
-          <button className="" onClick={() => handleCallCancelled()}>
-            {callStatus === "CANCELLED" ? "Cancel Call" : "End Call"}
-          </button>
+          <Button className="relative font-semibold" onClick={() => handleCallCancelled()}>
+            {callStatus === CallStatus.CANCELLED ? "Cancel Call" : "End Call"}
+          </Button>
         )}
       </div>
     </>
