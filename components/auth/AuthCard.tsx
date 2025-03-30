@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import {
   Card,
   CardContent,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 interface AuthCardProps {
   children: ReactNode;
