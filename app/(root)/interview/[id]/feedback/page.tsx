@@ -1,7 +1,8 @@
 import dayjs from "dayjs";
 import Link from "next/link";
-import Image from "next/image";
 import { redirect } from "next/navigation";
+import { FaStar } from "react-icons/fa6";
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 import {
   getFeedbackByInterviewId,
@@ -23,22 +24,22 @@ const Feedback = async ({ params }: RouteParams) => {
   });
 
   return (
-    <section className="section-feedback">
+    <section className="section-feedback mt-15">
       <div className="flex flex-row justify-center">
-        <h1 className="text-4xl font-semibold">
+        <h3 className="text-2xl font-semibold text-light-300">
           Feedback on the Interview -{" "}
           <span className="capitalize">{interview.role}</span> Interview
-        </h1>
+        </h3>
       </div>
 
       <div className="flex flex-row justify-center ">
         <div className="flex flex-row gap-5">
           {/* Overall Impression */}
           <div className="flex flex-row gap-2 items-center">
-            <Image src="/star.svg" width={22} height={22} alt="star" />
+            <FaStar size={18} className="text-light-300" />
             <p>
               Overall Impression:{" "}
-              <span className="text-primary-200 font-bold">
+              <span className="text-light-300">
                 {feedback?.totalScore}
               </span>
               /100
@@ -47,10 +48,10 @@ const Feedback = async ({ params }: RouteParams) => {
 
           {/* Date */}
           <div className="flex flex-row gap-2">
-            <Image src="/calendar.svg" width={22} height={22} alt="calendar" />
+            <FaRegCalendarAlt size={18} className="text-light-300" />
             <p>
               {feedback?.createdAt
-                ? dayjs(feedback.createdAt).format("MMM D, YYYY h:mm A")
+                ? dayjs(feedback.createdAt).format("D MMM, YYYY h:mm A")
                 : "N/A"}
             </p>
           </div>
@@ -62,11 +63,11 @@ const Feedback = async ({ params }: RouteParams) => {
       <p>{feedback?.finalAssessment}</p>
 
       {/* Interview Breakdown */}
-      <div className="flex flex-col gap-4">
-        <h2>Breakdown of the Interview:</h2>
+      <div className="flex flex-col gap-3">
+        <h4 className="text-light-300">Breakdown of the Interview:</h4>
         {feedback?.categoryScores?.map((category, index) => (
           <div key={index}>
-            <p className="font-bold">
+            <p className="font-bold text-light-300">
               {index + 1}. {category.name} ({category.score}/100)
             </p>
             <p>{category.comment}</p>
@@ -75,33 +76,33 @@ const Feedback = async ({ params }: RouteParams) => {
       </div>
 
       <div className="flex flex-col gap-3">
-        <h3>Strengths</h3>
-        <ul>
+        <h4 className="text-light-300">Strengths</h4>
+        <ul className="text-light-300">
           {feedback?.strengths?.map((strength, index) => (
-            <li key={index}>{strength}</li>
+            <li key={index} className="text-light-300">{strength}</li>
           ))}
         </ul>
       </div>
 
       <div className="flex flex-col gap-3">
-        <h3>Areas for Improvement</h3>
+        <h4 className="text-light-300">Areas for Improvement</h4>
         <ul>
           {feedback?.areasForImprovement?.map((area, index) => (
-            <li key={index}>{area}</li>
+            <li key={index} className="text-light-300">{area}</li>
           ))}
         </ul>
       </div>
 
-      <div className="buttons">
-        <Button className="btn-secondary flex-1">
+      <div className="buttons pb-20">
+        <Button>
           <Link href="/" className="flex w-full justify-center">
-            <p className="text-sm font-semibold text-primary-200 text-center">
+            <p className="text-sm font-semibold text-black text-center">
               Back to dashboard
             </p>
           </Link>
         </Button>
 
-        <Button className="btn-primary flex-1">
+        <Button>
           <Link
             href={`/interview/${id}`}
             className="flex w-full justify-center"
