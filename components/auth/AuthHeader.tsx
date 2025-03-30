@@ -1,29 +1,27 @@
-import Image from "next/image";
 import {
   CardDescription,
   CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
+import Logo from "../Logo";
 
 interface AuthHeaderProps {
   title: string;
   description: string;
 }
 
-const AuthHeader = ({ title, description }: AuthHeaderProps) => {
+const AuthHeader = ({ description }: AuthHeaderProps) => {
   return (
-   
-      
-      <CardHeader>
+
+
+    <CardHeader>
       <div className="flex items-center justify-center">
-        <Image src="/logo-4.png" alt="PrepSmart logo" width={140} height={50} />
-          </div>
-          <CardTitle className="text-4xl text-center TextGradient">{title}</CardTitle>
-          <CardDescription className="text-center text-lg">{description}</CardDescription>
-        </CardHeader>
-          
-   
-    
+        <Logo />
+      </div>
+      <CardDescription className="text-center text-lg">{description}</CardDescription>
+    </CardHeader>
+
+
+
   );
 };
 
