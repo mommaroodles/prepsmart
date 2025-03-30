@@ -205,7 +205,7 @@ h4 {
   }
 
   .section-feedback {
-    @apply flex flex-col gap-8 max-w-5xl mx-auto max-sm:px-4 text-lg leading-7;
+    @apply flex flex-col gap-8 max-w-5xl mx-auto max-sm:px-4 text-neutral-50 leading-7;
 
     .buttons {
       @apply flex w-full justify-evenly gap-4 max-sm:flex-col max-sm:items-center;
@@ -370,6 +370,72 @@ h4 {
   animation: float-5 2.5s infinite;
 }
 
+.Logo {
+  --tw-font-weight:var(--font-weight-semibold);
+  background-clip:content-box,border-box;
+  background-image:
+  linear-gradient(#fff0,#fff0),
+  linear-gradient(
+    101deg,
+    oklch(.623 .214 259.815),
+    oklch(.714 .203 305.504),
+    oklch(.637 .237 25.331),
+    oklch(.705 .213 47.604),
+    oklch(.905 .182 98.111)
+    );
+  background-origin:border-box;
+  border:5px solid #0000;
+  box-shadow:2px 1000px 1px var(--background)inset;
+  display:flex;
+  font-weight:var(--font-weight-semibold);
+  border-radius: 2px;
+}
+
+
+.HeroButton {
+  --tw-font-weight:var(--font-weight-semibold);
+  background-clip:content-box,border-box;
+  background-image:
+  linear-gradient(#fff0,#fff0),
+  linear-gradient(
+    101deg,
+    oklch(.623 .214 259.815),
+    oklch(.714 .203 305.504),
+    oklch(.637 .237 25.331),
+    oklch(.705 .213 47.604),
+    oklch(.905 .182 98.111)
+    );
+  background-origin:border-box;
+  border:5px solid #0000;
+  box-shadow:2px 1000px 1px var(--background)inset;
+  display:flex;
+  font-weight:var(--font-weight-semibold);
+  border-radius: 9999;
+}
+
+.HeroButton a:hover {
+  --tw-font-weight:var(--font-weight-semibold);
+  background-clip:content-box,border-box;
+  background-image:
+  linear-gradient(#fff0,#fff0),
+  linear-gradient(
+    101deg,
+    oklch(.905 .182 98.111);
+    oklch(.705 .213 47.604),
+    oklch(.637 .237 25.331),
+    oklch(.714 .203 305.504),
+    oklch(.623 .214 259.815)
+    );
+  background-origin:border-box;
+  border:5px solid #0000;
+  box-shadow:2px 1000px 1px var(--background)inset;
+  display:flex;
+  font-weight:var(--font-weight-semibold);
+  border-radius: 9999;
+}
+
+
+
 
 .TextGradient {
   --tw-gradient-position: to bottom right in oklab;
@@ -387,38 +453,7 @@ h4 {
   color: #0000;
 }
 
-.btn-primary {
-  @apply inline-block px-8 py-4 text-lg font-bold leading-6 text-white transition-colors duration-150 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer;
-  background-color: black; /* Black background */
-  border: 5px solid transparent; /* Transparent border for gradient */
-  background-clip: padding-box; /* Ensures the gradient border doesn't overlap */
-  position: relative;
-  margin-bottom: 20px;
-}
 
-.btn-primary:hover {
-  background-color: #111111; /* Slightly lighter black on hover */
-}
-
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  z-index: -1;
-  background: linear-gradient(
-    135deg,
-    #0e73cc 1.93%,
-    #624bbb 14.86%,
-    oklch(0.637 0.237 25.331) 48.09%,
-    oklch(0.705 0.213 47.604) 77.82%,
-    oklch(0.905 0.182 98.111) 97.3%
-  ); 
-  /* Gradient border */
-  border-radius: 9999px; /* Matches the button's rounded-full */
-}
 
 /* In your global.css */
 .auth-input {
