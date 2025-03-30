@@ -47,7 +47,7 @@ const Feedback = async ({ params }: RouteParams) => {
           </div>
 
           {/* Date */}
-          <div className="flex flex-row gap-2">
+          <div className="flex flex-row gap-2 items-center">
             <FaRegCalendarAlt size={18} className="text-light-300" />
             <p>
               {feedback?.createdAt
@@ -108,7 +108,7 @@ const Feedback = async ({ params }: RouteParams) => {
             className="flex w-full justify-center"
           >
             <p className="text-sm font-semibold text-black text-center">
-              Retake Interview
+              Retake the Interview
             </p>
           </Link>
         </Button>
