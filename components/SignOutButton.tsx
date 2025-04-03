@@ -17,7 +17,7 @@ const SignOutButton = () => {
       setIsLoading(true);
       await signOut();
       toast.success("Signed out successfully");
-      router.push("/sign-in");
+      router.push("/"); //return to home page after signout
     } catch (error) {
       console.error("Error signing out:", error);
       toast.error("Failed to sign out");
@@ -33,7 +33,7 @@ const SignOutButton = () => {
       onClick={handleSignOut}
       disabled={isLoading}
       className="text-light-100 hover:text-primary-100 hover:bg-dark-200 cursor-pointer"
-      title="Sign out"
+      title="Sign Out"
     >
       <LogOut size={20} />
     </Button>

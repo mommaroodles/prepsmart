@@ -16,7 +16,7 @@ const InterviewDetails = async ({ params }: RouteParams) => {
   const user = await getCurrentUser();
 
   const interview = await getInterviewById(id);
-  if (!interview) redirect("/");
+  if (!interview) redirect("/dashboard/interview");
 
   const feedback = await getFeedbackByInterviewId({
     interviewId: id,

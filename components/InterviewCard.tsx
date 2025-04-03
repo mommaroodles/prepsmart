@@ -146,8 +146,8 @@ const InterviewCard = async ({
 
         {/* Feedback or Placeholder Text */}
         <div className="mt-6 bg-muted/30 rounded-lg p-4 w-full">
-          <p className="line-clamp-2 text-sm text-muted-foreground">
-            {feedback?.finalAssessment || "You haven't taken this interview yet. Take it now to improve your skills."}
+          <p className="line-clamp-2 text-sm text-muted-foreground text-center">
+            {feedback?.finalAssessment || "You have not taken this interview yet. Take it now to improve your skills."}
           </p>
         </div>
       </CardContent>
@@ -156,20 +156,20 @@ const InterviewCard = async ({
         {/* Technology Icons */}
         <DisplayTechIcons techStack={techstack} />
 
-        <Button variant={feedback ? "default" : "secondary"} className="transition-all duration-300">
+        <Button className="transition-all duration-300">
           <Link
-            href={feedback ? `/interview/${interviewId}/feedback` : `/interview/${interviewId}`}
+            href={feedback ? `/dashboard/interview/${interviewId}/feedback` : `/dashboard/interview/${interviewId}`}
             className="flex items-center gap-2"
           >
             {feedback ? (
               <>
                 Check Feedback
-                <FaArrowRight size={4} className="text-neutral-950" />
+                <FaArrowRight size={4} className="text-neutral-800" />
               </>
             ) : (
               <>
-                View Interview
-                <FaArrowRight size={4} className="text-neutral-950" />
+                Take this Interview
+                <FaArrowRight size={4} className="text-neutral-800" />
               </>
             )}
           </Link>
