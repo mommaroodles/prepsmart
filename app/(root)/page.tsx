@@ -19,7 +19,7 @@ function HomePage() {
                     buttonText="Start Your Interview"
                     buttonLink="/sign-in" />
 
-                <h2 className="text-4xl font-bold mb-4 text-white text-center">Nail Your Job Interviews with PrepSmart</h2>
+                <h2 className="text-3xl font-bold mb-4 text-white text-center">Nail Your Job Interviews with PrepSmart</h2>
 
                 <p className="w-3/5 mx-auto text-xl text-center">
                     Improve your interview skills with our <span className="animate-pulse TextGradient font-semibold text-[24px]">AI-Powered</span> mock interview platform that simulate real-life interviews, allowing you to polish your responses, correct errors, and elevate your confidence to new heights. Get interview-ready, the PrepSmart way.
@@ -29,7 +29,7 @@ function HomePage() {
                         <Card className="w-[45%] max-sm:w-full min-h-[300px] border border-border bg-card shadow-md hover:shadow-lg transition-shadow duration-300 px-5 py-5">
                             <CardTitle><FcApproval size={56} /></CardTitle>
                             <CardDescription>
-                                <h4 className="pb-1 text-white">Better Job Opportunities</h4>
+                                <h3 className="pb-1 text-white">Better Job Opportunities</h3>
                                 <p className="text-lg">Get ahead of the competition with practical feedback! You&apos;ll have an advantage over your peers and boost your chances of success during interviews.</p>
                             </CardDescription>
                         </Card>
@@ -37,14 +37,14 @@ function HomePage() {
                         <Card className="w-[45%] max-sm:w-full min-h-[300px] border border-border bg-card shadow-md hover:shadow-lg transition-shadow duration-300 px-5 py-5">
                             <CardTitle><FcApproval size={56} /></CardTitle>
                             <CardDescription>
-                                <h4 className="pb-1 text-white">Be Better Prepared</h4>
+                                <h3 className="pb-1 text-white">Be Better Prepared</h3>
                                 <p className="text-lg">No need to feel nervous before your next interview! Try out our AI interview tool to boost your confidence and get comfortable with common interview questions.</p>
                             </CardDescription>
                         </Card>
                         <Card className="w-[45%] max-sm:w-full min-h-[300px] border border-border bg-card shadow-md hover:shadow-lg transition-shadow duration-300 px-5 py-5">
                             <CardTitle><FcApproval size={56} /></CardTitle>
                             <CardDescription>
-                                <h4 className="pb-1 text-white">Practice Makes Perfect</h4>
+                                <h3 className="pb-1 text-white">Practice Makes Perfect</h3>
                                 <p className="text-lg">Answer typical interview questions via our interface. Feel the real interview pressure but in a safe practice environment and in the comfort of your home.</p>
                             </CardDescription>
                         </Card>
@@ -52,7 +52,7 @@ function HomePage() {
                         <Card className="w-[45%] max-sm:w-full min-h-[300px] border border-border bg-card shadow-md hover:shadow-lg transition-shadow duration-300 px-5 py-5">
                             <CardTitle><FcApproval size={56} /></CardTitle>
                             <CardDescription>
-                                <h4 className="pb-1 text-white">Instant Feedback</h4>
+                                <h3 className="pb-1 text-white">Instant Feedback</h3>
                                 <p className="text-lg">Get feedback instantly and real-time insights to refine responses and build confidence and turn your weaknesses into strengths.</p>
                             </CardDescription>
                         </Card>
