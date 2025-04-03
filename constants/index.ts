@@ -95,6 +95,10 @@ export const mappings = {
   netlify: "netlify",
   vercel: "vercel",
   "aws amplify": "amplify",
+  python: "python",
+  google: "google",
+  chrome: "chrome",
+  jira: "jira",
 };
 
 export const interviewer: CreateAssistantDTO = {
@@ -136,7 +140,7 @@ Be professional, yet warm and welcoming:
 Use official yet friendly language.
 Keep responses concise and to the point (like in a real voice interview).
 Avoid robotic phrasing—sound natural and conversational.
-Answer the candidate’s questions professionally:
+Answer the candidate's questions professionally:
 
 If asked about the role, company, or expectations, provide a clear and relevant answer.
 If unsure, redirect the candidate to HR for more details.
@@ -202,40 +206,13 @@ export const interviewCovers = [
   "/telegram.png",
   "/tiktok.png",
   "/yahoo.png",
-];
-
-export const dummyInterviews = [
-  {
-    id: "1",
-    userId: "1",
-    role: "Frontend Developer",
-    type: "Technical",
-    techstack: ["React.js", "Next.js", "TailwindCSS", "Redux"],
-    level: "Junior",
-    questions: "What is React.js?",
-    finalized: true,
-    createdAt: "2022-01-01T00:00:00Z",
-  },
-  {
-    id: "2",
-    userId: "2",
-    role: "Backend Developer",
-    type: "Mixed",
-    techstack: ["Node.js", "Express.js", "MongoDB","Redis"],
-    level: "Mid",
-    questions: "What is Node.js?",
-    finalized: true,
-    createdAt: "2022-01-01T00:00:00Z"
-  },
-  {
-    id: "3",
-    userId: "3",
-    role: "Backend Developer",
-    type: "Behavioral",
-    techstack: ["TailwindCSS", "Docker", "AWS","Angular.js"],
-    level: "Mid",
-    questions: "What is Docker",
-    finalized: true,
-    createdAt: "2022-01-01T00:00:00Z"
-  }
+  "/discord.png",
+  "/dropbox.png",
+  "/duckduckgo.png",
+  "/figma.png",
+  "/instagram.png",
+  "/linkedin.png",
+  "/notion.png",
+  "/shopify.png",
+  "/twitch.png",
 ];

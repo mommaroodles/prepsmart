@@ -1,96 +1,102 @@
-//home page
+"use client"
 
 import HeroSection from "@/components/HeroSection";
-import InterviewCard from "@/components/InterviewCard";
-import { getCurrentUser } from "@/lib/actions/auth.action";
-import {
-  getInterviewsByUserId,
-  getLatestInterviews,
-} from "@/lib/actions/general.action";
-import Footer from "@/components/Footer";
-import { Suspense } from 'react';
+import { Card, CardTitle, CardDescription } from "@/components/ui/card";
+import { FcApproval } from "react-icons/fc";
+import TestimonialsSection from "@/components/testimonials/TestimonialsSection";
+import CTAButton from "@/components/CTAButton";
+import { ContentWithImage } from "@/components/ui/content-with-image";
 
-async function Home() {
-  const user = await getCurrentUser();
+function HomePage() {
+    return (
+        <>
 
-  const [userInterviews, allInterview] = await Promise.all([
-    getInterviewsByUserId(user?.id || ""),
-    getLatestInterviews({ userId: user?.id || "" }),
-  ]);
+            <main className="pt-5 justify-evenly">
+                <HeroSection
+                    title="AI Powered"
+                    subtitle="Real Time Interview Platform"
+                    description="Practice Interview Questions & Get Instant Feedback."
+                    buttonText="Start Your Interview"
+                    buttonLink="/sign-in" />
 
-  const hasPastInterviews = (userInterviews?.length ?? 0) > 0;
-  const hasUpcomingInterviews = (allInterview?.length ?? 0) > 0;
+                <h2 className="text-4xl font-bold mb-4 text-white text-center">Nail Your Job Interviews with PrepSmart</h2>
 
-  return (
-    <>
-      <HeroSection
-        title="AI Powered"
-        subtitle="Real Time Interview Platform"
-        description="Practice Interview Questions & Get Instant Feedback."
-        buttonText="Start an Interview"
-        buttonLink="/interview"
-      />
+                <p className="w-3/5 mx-auto text-xl text-center">
+                    Improve your interview skills with our <span className="animate-pulse TextGradient font-semibold text-[24px]">AI-Powered</span> mock interview platform that simulate real-life interviews, allowing you to polish your responses, correct errors, and elevate your confidence to new heights. Get interview-ready, the PrepSmart way.
+                </p>
+                <section>
+                    <div className="flex flex-wrap justify-center items-center gap-6 my-20 text-foreground">
+                        <Card className="w-[45%] max-sm:w-full min-h-[300px] border border-border bg-card shadow-md hover:shadow-lg transition-shadow duration-300 px-5 py-5">
+                            <CardTitle><FcApproval size={56} /></CardTitle>
+                            <CardDescription>
+                                <h4 className="pb-1 text-white">Better Job Opportunities</h4>
+                                <p className="text-lg">Get ahead of the competition with practical feedback! You&apos;ll have an advantage over your peers and boost your chances of success during interviews.</p>
+                            </CardDescription>
+                        </Card>
 
-      <section className="flex flex-col gap-6 mt-15">
-        <h5>
-          Interviews created by { }
-          <span className="text-blue-500">{user?.name}</span>
-        </h5>
-        <Suspense fallback={<div>Loading dynamic content...</div>}>
-          <div className="interviews-section">
+                        <Card className="w-[45%] max-sm:w-full min-h-[300px] border border-border bg-card shadow-md hover:shadow-lg transition-shadow duration-300 px-5 py-5">
+                            <CardTitle><FcApproval size={56} /></CardTitle>
+                            <CardDescription>
+                                <h4 className="pb-1 text-white">Be Better Prepared</h4>
+                                <p className="text-lg">No need to feel nervous before your next interview! Try out our AI interview tool to boost your confidence and get comfortable with common interview questions.</p>
+                            </CardDescription>
+                        </Card>
+                        <Card className="w-[45%] max-sm:w-full min-h-[300px] border border-border bg-card shadow-md hover:shadow-lg transition-shadow duration-300 px-5 py-5">
+                            <CardTitle><FcApproval size={56} /></CardTitle>
+                            <CardDescription>
+                                <h4 className="pb-1 text-white">Practice Makes Perfect</h4>
+                                <p className="text-lg">Answer typical interview questions via our interface. Feel the real interview pressure but in a safe practice environment and in the comfort of your home.</p>
+                            </CardDescription>
+                        </Card>
 
-            {hasPastInterviews ? (
-              userInterviews?.map((interview) => (
+                        <Card className="w-[45%] max-sm:w-full min-h-[300px] border border-border bg-card shadow-md hover:shadow-lg transition-shadow duration-300 px-5 py-5">
+                            <CardTitle><FcApproval size={56} /></CardTitle>
+                            <CardDescription>
+                                <h4 className="pb-1 text-white">Instant Feedback</h4>
+                                <p className="text-lg">Get feedback instantly and real-time insights to refine responses and build confidence and turn your weaknesses into strengths.</p>
+                            </CardDescription>
+                        </Card>
+                    </div>
+                </section>
+                <section>
+                    {/* Call to Action Button */}
+                    <div className="flex justify-center items-center pb-16">
+                        <CTAButton
+                            buttonText="Start Practicing for Free"
+                            buttonLink="/sign-in" />
+                    </div>
+                </section>
+                <section>
+                    <ContentWithImage
+                        h4Text="PRACTICE TODAY, SUCCEED TOMORROW"
+                        h1Text="Stay Cool and Confident in Interviews"
+                        description="Feeling nervous? It happens to everyone—your mind goes blank, you ramble, or you forget key points. But with the right practice, you can walk into any interview feeling calm and in control. Our AI-powered interview platform give you a stress-free way to practice, build confidence, and sharpen your responses so you can crush the real thing."
+                        imageSrc="/homepage/woman-in-an-office-being-interviewed.jpg"
+                        imageAlt="Woman in office being interviewed"
+                        imageLeft={false}
+                        isLargeImage={false}
+                    />
+                </section>
+                <section>
+                    <ContentWithImage
+                        h4Text="BE THE CANDIDATE THEY CAN'T IGNORE"
+                        h1Text="Handle Any Interview Question Like a Pro"
+                        description="Unexpected questions? No problem. Whether it's a tricky curveball, a tough behavioral scenario, or a challenging technical question, you've got this. Our AI interview platform throws realistic, tough questions your way, helping you practice thinking on your feet. With instant feedback, you'll refine your answers and walk into your next interview ready for anything."
+                        imageSrc="/homepage/man-in-an-interview-office.jpg"
+                        imageAlt="Man sitting in a office conducting an interview"
+                        imageLeft={true}
+                        isLargeImage={false}
+                    />
+                </section>
+                <section>
+                    {/* Testimonials */}
+                    <TestimonialsSection />
+                </section>
+            </main>
 
-                <InterviewCard
-                  key={interview.id}
-                  userId={user?.id}
-                  interviewId={interview.id}
-                  role={interview.role}
-                  type={interview.type}
-                  techstack={interview.techstack}
-                  createdAt={interview.createdAt}
-                  coverImage={interview.coverImage}
-                  level={interview.level}
-                  questions={interview.questions}
-                />
-              ))
-            ) : (
-              <p>You haven&apos;t taken any interviews yet</p>
-            )}
-          </div>
-        </Suspense>
-      </section>
-
-      <section className="flex flex-col gap-6 mt-8">
-        <h5>All Interviews</h5>
-        <Suspense fallback={<div>Loading dynamic content...</div>}>
-          <div className="interviews-section">
-            {hasUpcomingInterviews ? (
-              allInterview?.map((interview) => (
-                <InterviewCard
-                  key={interview.id}
-                  userId={user?.id}
-                  interviewId={interview.id}
-                  role={interview.role}
-                  type={interview.type}
-                  techstack={interview.techstack}
-                  createdAt={interview.createdAt}
-                  coverImage={interview.coverImage}
-                  level={interview.level}
-                  questions={interview.questions}
-                />
-              ))
-            ) : (
-              <p>There are no interviews available</p>
-            )}
-          </div>
-        </Suspense>
-      </section>
-
-      <Footer />
-    </>
-  );
+        </>
+    );
 }
 
-export default Home;
+export default HomePage;
+

@@ -1,15 +1,17 @@
 "use client"
 
-import Image from "next/image"
-import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
+import Link from "next/link";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils"; // fetches the tech icons
+import { vapi } from "@/lib/vapi.sdk"; // will be used by all business categories
+import { createFeedback } from "@/lib/actions/general.action"; // creates the feedback
+import { interviewer } from "@/constants";
 
-import { cn } from "@/lib/utils"
-import { vapi } from "@/lib/vapi.sdk"
-import { interviewer } from "@/constants"
-import { createFeedback } from "@/lib/actions/general.action"
-import { Card, CardContent, CardTitle } from "@/components/ui/card"
-import { Button } from "./ui/button"
+// UI
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Button } from "./ui/button";
 
 
 enum CallStatus {
@@ -103,7 +105,7 @@ const Agent = ({
       });
 
       if (success && id) {
-        router.push(`/interview/${interviewId}/feedback`);
+        router.push(`/dashboard/interview/${interviewId}/feedback`);
       } else {
         console.log("Error saving feedback");
         router.push("/");
@@ -148,14 +150,14 @@ const Agent = ({
   const handleCallCancelled = () => {
     setCallStatus(CallStatus.CANCELLED);
     vapi.stop();
-    router.push("/");
+    router.push("/dashboard"); //if user cancels call return to dashboard
   };
 
   return (
     <>
       <div className="flex flex-row justify-center items-center gap-8 w-full">
         {/* AI Interviewer Card */}
-        <Card className="w-100 bg-black">
+        <Card className="w-100 bg-background">
           <CardContent className="flex flex-col items-center justify-center p-6 space-y-4">
             <div className="relative">
               <Image
@@ -172,7 +174,7 @@ const Agent = ({
         </Card>
 
         {/* User Profile Card */}
-        <Card className="w-100 bg-neutral-950">
+        <Card className="w-100 bg-teal-600">
           <CardContent className="flex flex-col items-center justify-center p-6 space-y-4">
             <Image
               src={userAvatar || "/user-avatar.jpg"}
@@ -200,6 +202,9 @@ const Agent = ({
       )}
 
       <div className="w-full flex justify-center gap-4 mt-6">
+        <Button asChild>
+          <Link href="/dashboard">Return to Dashboard</Link>
+        </Button>
         {/* Start Call Button */}
         {callStatus !== "ACTIVE" && (
           <Button className="relative font-semibold" onClick={handleCall}>

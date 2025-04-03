@@ -11,7 +11,7 @@ export const Logo = ({ link = false, className }: LogoProps) => {
   const content = (
     <div className={clsx("flex items-center gap-2", className)}>
       <FaCubesStacked size={45} className="Logo" />
-      <span className="hidden sm:block text-light-100 text-2xl sm:text-[38px] font-bold">
+      <span className="text-light-100 text-2xl sm:text-[38px] font-bold">
         Prep<span className="TextGradient">Smart</span>
       </span>
     </div>

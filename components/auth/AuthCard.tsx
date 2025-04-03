@@ -10,14 +10,14 @@ interface AuthCardProps {
 
 const AuthCard = ({ children }: AuthCardProps) => {
   return (
-    <Card className="w-[450px]">
+    <Card className="w-[450px] mt-10">
       <div>
         <CardContent>
           <div>{children}</div>
-          </CardContent>
-     </div>
+        </CardContent>
+      </div>
     </Card>
-    
+
   );
 };
 

@@ -202,7 +202,6 @@ export async function isAuthenticated() {
 }
 
 // Add this function to your existing auth.action.ts file
-
 export async function updateUserAvatar({ 
   userId, 
   photoURL 
