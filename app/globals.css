@@ -149,7 +149,7 @@
     @apply text-6xl font-bold;
   }
   h3 {
-    @apply text-4xl font-bold;
+    @apply text-2xl font-bold;
   }
   h4 {
     @apply text-3xl font-semibold;
@@ -398,26 +398,6 @@
       oklch(0.637 0.237 25.331),
       oklch(0.705 0.213 47.604),
       oklch(0.905 0.182 98.111)
-    );
-  background-origin: border-box;
-  border: 5px solid #0000;
-  box-shadow: 2px 1000px 1px var(--background) inset;
-  display: flex;
-  font-weight: var(--font-weight-semibold);
-  border-radius: 9999;
-}
-
-.HeroButton a:hover {
-  --tw-font-weight: var(--font-weight-semibold);
-  background-clip: content-box, border-box;
-  background-image:
-    linear-gradient(#fff0, #fff0),
-    linear-gradient(
-      101deg,
-      oklch(0.905 0.182 98.111) ; oklch(0.705 0.213 47.604),
-      oklch(0.637 0.237 25.331),
-      oklch(0.714 0.203 305.504),
-      oklch(0.623 0.214 259.815)
     );
   background-origin: border-box;
   border: 5px solid #0000;
