@@ -37,9 +37,9 @@ export function ContentWithImage({
 
                     {/* Text Content Column */}
                     <div className="space-y-6">
-                        <h4 className="text-[16px]">{h4Text}</h4>
-                        <h1 className="text-[26px] font-bold leading-[1.16]">{h1Text}</h1>
-                        <p className="text-[18px]">{description}</p>
+                        <h4 className="text-sm">{h4Text}</h4>
+                        <h1 className="text-2xl font-bold leading-[1.16]">{h1Text}</h1>
+                        <p className="text-lg">{description}</p>
                     </div>
                 </div>
             </div>
