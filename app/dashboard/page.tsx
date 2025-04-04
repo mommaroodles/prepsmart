@@ -6,6 +6,10 @@ import {
 } from "@/lib/actions/general.action";
 import Footer from "@/components/Footer";
 //import { Suspense } from 'react';
+import { buttonVariants } from "@/components/ui/button";
+
+// Ensure buttonVariants is correctly implemented in "@/components/ui/button" to return appropriate class names.
+import Link from "next/link";
 
 async function Dashboard() {
   const user = await getCurrentUser();
@@ -20,6 +24,8 @@ async function Dashboard() {
 
   const hasPastInterviews = (userInterviews?.length ?? 0) > 0;
   const hasUpcomingInterviews = (allInterview?.length ?? 0) > 0;
+
+  const startNewInterviewButtonClass = buttonVariants({ variant: "default" });
 
   return (
     <>
@@ -51,8 +57,21 @@ async function Dashboard() {
               />
             ))
           ) : (
-            <p className="text-lg">You haven&apos;t taken any interviews yet</p>
+            <>
+              <section className="flex flex-col gap-6">
+                <p className="text-lg mb-2">You haven&apos;t taken any interviews yet. Start one now!</p>
+                <p className="mt-1">
+                  <Link
+                    href="/dashboard/interview"
+                    className={startNewInterviewButtonClass}
+                  >
+                    Start New Interview
+                  </Link>
+                </p>
+              </section>
+            </>
           )}
+
         </div>
 
       </section>
@@ -89,4 +108,3 @@ async function Dashboard() {
 }
 
 export default Dashboard;
-
