@@ -21,7 +21,10 @@ const VerificationScreen = ({
 }: VerificationScreenProps) => {
   return (
     <AuthCard>
-      <AuthHeader title="Email Verification Required" />
+	<AuthHeader
+	  title="Email Verification Required"
+	  description="Please verify your email to continue."
+	/>
 
       <div className="text-center">
         <p className="mb-4">
