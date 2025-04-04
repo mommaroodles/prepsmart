@@ -17,6 +17,9 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  images: {
+    domains: ["lh3.googleusercontent.com"], // Add Google's image domain
+  },
 };
 
 export default nextConfig;
