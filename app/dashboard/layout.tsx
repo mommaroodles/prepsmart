@@ -37,7 +37,7 @@ const DashboardLayout = async ({ children }: { children: ReactNode }) => {
                     {/* User profile section */}
                     {user && (
                         <div className="flex items-center justify-end gap-3">
-                            <span className="text-light-100 text-lg font-medium">
+                            <span className="hidden lg:inline text-light-100 text-lg font-medium">
                                 {user.name}
                             </span>
                             <AvatarPicker
