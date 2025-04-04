@@ -28,14 +28,14 @@ const SignOutButton = () => {
 
   return (
     <Button
-      variant="ghost"
+      variant="destructive"
       size="icon"
       onClick={handleSignOut}
       disabled={isLoading}
-      className="text-light-100 hover:text-primary-100 hover:bg-dark-200 cursor-pointer"
+      className="text-white hover:text-primary-100 hover:bg-dark-200 cursor-pointer"
       title="Sign Out"
     >
-      <LogOut size={20} />
+      <LogOut size={28} />
     </Button>
   );
 };
