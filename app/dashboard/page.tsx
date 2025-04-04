@@ -23,15 +23,14 @@ async function Dashboard() {
 
   return (
     <>
-      <h1 className="text-2xl">Dashboard</h1>
+      <h1 className="text-3xl pb-3">Dashboard</h1>
       <hr></hr>
-      <p className="text-lg">Your dashboard lists all the interviews you have taken and you can take as many interviews as you need. To get started</p>
+      <p className="text-lg pt-5">Welcome {user?.name}.</p>
+      <p className="text-lg">Your dashboard lists all the interviews you have taken and you can take as many interviews as you need. You will also find additional practice interviews listed below.</p>
 
       <section className="flex flex-col gap-6 mt-15">
-        <h5>
-          Interviews created by { }
-          <span className="text-blue-500">{user?.name}</span>
-        </h5>
+        <h5 className="text-2xl">Interviews you have taken</h5>
+
 
         <div className="interviews-section">
 
@@ -52,14 +51,14 @@ async function Dashboard() {
               />
             ))
           ) : (
-            <p>You haven&apos;t taken any interviews yet</p>
+            <p className="text-lg">You haven&apos;t taken any interviews yet</p>
           )}
         </div>
 
       </section>
 
       <section className="flex flex-col gap-6 mt-8">
-        <h5>All Interviews</h5>
+        <h5 className="text-2xl">Available Practice Interviews</h5>
 
         <div className="interviews-section">
           {hasUpcomingInterviews ? (
@@ -78,7 +77,7 @@ async function Dashboard() {
               />
             ))
           ) : (
-            <p>There are no interviews available. Please check back later.</p>
+            <p className="text-lg">There are no interviews available. Please check back later.</p>
           )}
         </div>
 
@@ -90,3 +89,4 @@ async function Dashboard() {
 }
 
 export default Dashboard;
+
