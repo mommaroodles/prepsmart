@@ -1,5 +1,3 @@
-//home page
-
 import InterviewCard from "@/components/InterviewCard";
 import { getCurrentUser } from "@/lib/actions/auth.action";
 import {
@@ -26,7 +24,8 @@ async function Dashboard() {
   return (
     <>
       <h1 className="text-2xl">Dashboard</h1>
-      {/*       <p className="text-lg">Your dashboard lists all the interviews you have taken and you can take as many interviews as you need.</p> */}
+      <hr></hr>
+      <p className="text-lg">Your dashboard lists all the interviews you have taken and you can take as many interviews as you need. To get started</p>
 
       <section className="flex flex-col gap-6 mt-15">
         <h5>
