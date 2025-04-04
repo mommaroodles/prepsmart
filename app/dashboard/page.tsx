@@ -32,7 +32,7 @@ async function Dashboard() {
       <h1 className="text-3xl pb-3">Dashboard</h1>
       <hr></hr>
       <p className="text-lg pt-5">Welcome {user?.name}.</p>
-      <p className="text-lg">Your dashboard lists all the interviews you have taken and you can take as many interviews as you need. You will also find additional practice interviews listed below.</p>
+      <p className="text-lg pt-3">Your dashboard lists all the interviews you have taken and you can take as many interviews as you need. You will also find additional practice interviews listed below.</p>
 
       <section className="flex flex-col gap-6 mt-15">
         <h5 className="text-2xl">Interviews you have taken</h5>
