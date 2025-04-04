@@ -54,7 +54,11 @@ const Header = () => {
 
             {/* Mobile Dropdown (renders only on mobile) */}
             {isMenuOpen && (
-                <div className="md:hidden absolute top-full justify-items-center left-0 w-full bg-background border-t border-dark-300 shadow-md">
+                <div
+                    className="md:hidden absolute top-full justify-items-center left-0 w-full bg-background border-t border-dark-300 shadow-md"
+                    role="menu" // Add a role for better accessibility
+                    aria-hidden={!isMenuOpen}
+                >
                     <ul className="flex flex-col gap-4 px-6 py-4">
                         <li>
                             <Link href="/how-it-works">
