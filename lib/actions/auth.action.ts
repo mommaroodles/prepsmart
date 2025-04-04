@@ -47,7 +47,7 @@ export async function signUp(params: SignUpParams) {
     }
 
     // For Google users, get their profile photo
-    let photoURL = "/user-avatar.jpg"; // Default avatar
+    let photoURL = "/user-avatar.png"; // Default avatar
     
     if (!password) {
       try {
