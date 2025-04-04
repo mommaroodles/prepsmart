@@ -27,7 +27,7 @@ function HomePage() {
                 <section>
                     <div className="flex flex-wrap justify-center items-center gap-6 my-20 text-foreground">
                         <Card className="w-[45%] max-sm:w-full min-h-[300px] border border-border bg-card shadow-md hover:shadow-lg transition-shadow duration-300 px-5 py-5">
-                            <CardTitle><FcApproval size={56} /></CardTitle>
+                            <CardTitle><FcApproval size={48} /></CardTitle>
                             <CardDescription>
                                 <h3 className="pb-1 text-white">Better Job Opportunities</h3>
                                 <p className="text-lg">Get ahead of the competition with practical feedback! You&apos;ll have an advantage over your peers and boost your chances of success during interviews.</p>
@@ -35,14 +35,14 @@ function HomePage() {
                         </Card>
 
                         <Card className="w-[45%] max-sm:w-full min-h-[300px] border border-border bg-card shadow-md hover:shadow-lg transition-shadow duration-300 px-5 py-5">
-                            <CardTitle><FcApproval size={56} /></CardTitle>
+                            <CardTitle><FcApproval size={48} /></CardTitle>
                             <CardDescription>
                                 <h3 className="pb-1 text-white">Be Better Prepared</h3>
                                 <p className="text-lg">No need to feel nervous before your next interview! Try out our AI interview tool to boost your confidence and get comfortable with common interview questions.</p>
                             </CardDescription>
                         </Card>
                         <Card className="w-[45%] max-sm:w-full min-h-[300px] border border-border bg-card shadow-md hover:shadow-lg transition-shadow duration-300 px-5 py-5">
-                            <CardTitle><FcApproval size={56} /></CardTitle>
+                            <CardTitle><FcApproval size={48} /></CardTitle>
                             <CardDescription>
                                 <h3 className="pb-1 text-white">Practice Makes Perfect</h3>
                                 <p className="text-lg">Answer typical interview questions via our interface. Feel the real interview pressure but in a safe practice environment and in the comfort of your home.</p>
@@ -50,7 +50,7 @@ function HomePage() {
                         </Card>
 
                         <Card className="w-[45%] max-sm:w-full min-h-[300px] border border-border bg-card shadow-md hover:shadow-lg transition-shadow duration-300 px-5 py-5">
-                            <CardTitle><FcApproval size={56} /></CardTitle>
+                            <CardTitle><FcApproval size={48} /></CardTitle>
                             <CardDescription>
                                 <h3 className="pb-1 text-white">Instant Feedback</h3>
                                 <p className="text-lg">Get feedback instantly and real-time insights to refine responses and build confidence and turn your weaknesses into strengths.</p>
