@@ -1,14 +1,14 @@
 import { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button"
+//import { Button } from "@/components/ui/button"
 
 import { isAuthenticated, getCurrentUser } from "@/lib/actions/auth.action";
 import SignOutButton from "@/components/SignOutButton";
 import Logo from "@/components/Logo";
 import AvatarPicker from "@/components/avatar/AvatarPicker";
 import { Toaster } from "@/components/ui/sonner"
-import Link from "next/link";
+//import Link from "next/link";
 
 const DashboardLayout = async ({ children }: { children: ReactNode }) => {
     const isUserAuthenticated = await isAuthenticated();
@@ -24,22 +24,12 @@ const DashboardLayout = async ({ children }: { children: ReactNode }) => {
         <div className="root-layout">
             {/* Fixed Navbar */}
             <header className="fixed top-0 left-0 w-full bg-background border-b border-dark-300 z-50 shadow-md">
-                <nav className="w-full grid grid-cols-3 items-center px-6 py-4">
+                <nav className="w-full grid grid-cols-2 justify-start items-center px-6 py-4">
                     <Logo link />
-
-                    <ul className="flex justify-center items-center gap-6">
-                        <li><Link href="/how-it-works"><Button variant="ghost">How it Works</Button></Link></li>
-                        <li><Link href="https://www.wpdevs.co.za/#about"><Button variant="ghost">About</Button></Link></li>
-                        <li><Link href="https://www.wpdevs.co.za/#contact"><Button variant="ghost">Contact</Button></Link></li>
-                        {/* <li><Link href="/pricing">Pricing</Link></li> */}
-                    </ul>
 
                     {/* User profile section */}
                     {user && (
                         <div className="flex items-center justify-end gap-3">
-                            <span className="hidden lg:inline text-light-100 text-lg font-medium">
-                                {user.name}
-                            </span>
                             <AvatarPicker
                                 currentAvatar={userAvatar}
                                 userId={user.id}
