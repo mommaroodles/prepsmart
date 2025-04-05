@@ -11,7 +11,7 @@ const HowItWorks = () => {
                 <p className="justify-center text-2xl text-center font-semibold text-blue-300 mb-12">Ensure you have your microphone ready, if you don&apos;t have a microphone, then signup with your mobile device.</p>
 
                 <section>
-                    <p>Once the interview starts, you will be asked a series of questions. You can respond to the questions using your voice. The AI will listen to your responses and provide real-time feedback on your performance.</p>
+                    <p>Once the interview starts, you will be asked a series of questions. You can respond to the questions using your voice. The AI Interviewer will listen to your responses and provide real-time feedback on your performance.</p>
                 </section>
                 <section>
                     <h2 className='text-2xl pt-15 item'>Questions you will be asked before the interview begins.</h2>
