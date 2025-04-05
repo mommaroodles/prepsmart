@@ -33,6 +33,16 @@ async function Dashboard() {
       <hr></hr>
       <p className="text-lg pt-5">Welcome {user?.name}.</p>
       <p className="text-lg pt-3">Your dashboard lists all the interviews you have taken and you can take as many interviews as you need. You will also find additional practice interviews listed below.</p>
+      <section className="flex flex-col gap-6 mt-2">
+        <p className="mt-1">
+          <Link
+            href="/dashboard/interview"
+            className={startNewInterviewButtonClass}
+          >
+            Start New Interview
+          </Link>
+        </p>
+      </section>
 
       <section className="flex flex-col gap-6 mt-15">
         <h5 className="text-2xl">Interviews you have taken</h5>
@@ -60,14 +70,6 @@ async function Dashboard() {
             <>
               <section className="flex flex-col gap-6">
                 <p className="text-lg mb-2">You haven&apos;t taken any interviews yet. Start one now!</p>
-                <p className="mt-1">
-                  <Link
-                    href="/dashboard/interview"
-                    className={startNewInterviewButtonClass}
-                  >
-                    Start New Interview
-                  </Link>
-                </p>
               </section>
             </>
           )}
