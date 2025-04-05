@@ -1,5 +1,6 @@
 "use client"
 
+import React from 'react';
 import HeroSection from "@/components/HeroSection";
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { FcApproval } from "react-icons/fc";
@@ -17,12 +18,12 @@ function HomePage() {
                     subtitle="Real Time Interview Platform"
                     description="Practice Interview Questions & Get Instant Feedback."
                     buttonText="Start Your Interview"
-                    buttonLink="/sign-in" />
+                    buttonLink="/sign-up" />
 
                 <h2 className="text-3xl font-bold mb-4 text-white text-center">Nail Your Job Interviews with PrepSmart</h2>
 
                 <p className="w-3/5 mx-auto text-xl text-center">
-                    Improve your interview skills with our <span className="animate-pulse TextGradient font-semibold text-[24px]">AI-Powered</span> mock interview platform that simulate real-life interviews, allowing you to polish your responses, correct errors, and elevate your confidence to new heights. Get interview-ready, the PrepSmart way.
+                    Improve your interview skills with our Voice Enabled <span className="animate-pulse TextGradient font-semibold text-[24px]">AI-Powered</span> mock interview platform that simulate real-life interviews, allowing you to polish your responses, correct errors, and elevate your confidence to new heights. Get interview-ready, the PrepSmart way.
                 </p>
                 <section>
                     <div className="flex flex-wrap justify-center items-center gap-6 my-20 text-foreground">
@@ -63,7 +64,7 @@ function HomePage() {
                     <div className="flex justify-center items-center pb-16">
                         <CTAButton
                             buttonText="Start Practicing for Free"
-                            buttonLink="/sign-in" />
+                            buttonLink="/sign-up" />
                     </div>
                 </section>
                 <section>
@@ -91,6 +92,14 @@ function HomePage() {
                 <section>
                     {/* Testimonials */}
                     <TestimonialsSection />
+                </section>
+                <section>
+                    {/* Call to Action Button */}
+                    <div className="flex justify-center items-center pb-16">
+                        <CTAButton
+                            buttonText="Sign Up Now Its Free"
+                            buttonLink="/sign-up" />
+                    </div>
                 </section>
             </main>
 
