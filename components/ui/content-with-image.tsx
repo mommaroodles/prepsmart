@@ -1,7 +1,7 @@
 import Image from "next/image"
 
 interface ContentWithImageProps {
-    h4Text: string
+    h3Text: string
     h1Text: string
     description: string
     imageSrc: string
@@ -11,7 +11,7 @@ interface ContentWithImageProps {
 }
 
 export function ContentWithImage({
-    h4Text,
+    h3Text,
     h1Text,
     description,
     imageSrc,
@@ -37,7 +37,7 @@ export function ContentWithImage({
 
                     {/* Text Content Column */}
                     <div className="space-y-6">
-                        <h4 className="text-sm">{h4Text}</h4>
+                        <h3 className="text-sm">{h3Text}</h3>
                         <h1 className="text-2xl font-bold leading-[1.16]">{h1Text}</h1>
                         <p className="text-lg">{description}</p>
                     </div>

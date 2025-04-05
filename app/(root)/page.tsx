@@ -69,7 +69,7 @@ function HomePage() {
                 </section>
                 <section>
                     <ContentWithImage
-                        h4Text="PRACTICE TODAY, SUCCEED TOMORROW"
+                        h3Text="PRACTICE TODAY, SUCCEED TOMORROW"
                         h1Text="Stay Cool and Confident in Interviews"
                         description="Feeling nervous? It happens to everyone—your mind goes blank, you ramble, or you forget key points. But with the right practice, you can walk into any interview feeling calm and in control. Our AI-powered interview platform give you a stress-free way to practice, build confidence, and sharpen your responses so you can crush the real thing."
                         imageSrc="/homepage/woman-in-an-office-being-interviewed.jpg"
@@ -80,7 +80,7 @@ function HomePage() {
                 </section>
                 <section>
                     <ContentWithImage
-                        h4Text="BE THE CANDIDATE THEY CAN'T IGNORE"
+                        h3Text="BE THE CANDIDATE THEY CAN'T IGNORE"
                         h1Text="Handle Any Interview Question Like a Pro"
                         description="Unexpected questions? No problem. Whether it's a tricky curveball, a tough behavioral scenario, or a challenging technical question, you've got this. Our AI interview platform throws realistic, tough questions your way, helping you practice thinking on your feet. With instant feedback, you'll refine your answers and walk into your next interview ready for anything."
                         imageSrc="/homepage/man-in-an-interview-office.jpg"
